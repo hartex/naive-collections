@@ -3,7 +3,7 @@ package io.hartex.colletions;
 /**
  * Created by hartex
  */
-public interface NaiveCollection<T> {
+public interface NaiveCollection<Item> {
 
     int size();
 
