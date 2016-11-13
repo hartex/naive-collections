@@ -5,10 +5,10 @@ import io.hartex.colletions.NaiveCollection;
 /**
  * Created by hartex
  */
-public interface NaiveStack<T> extends NaiveCollection<T> {
+public interface NaiveStack<Item> extends NaiveCollection<Item> {
 
-    void push(T item);
+    void push(Item item);
 
-    T pop();
+    Item pop();
 
 }

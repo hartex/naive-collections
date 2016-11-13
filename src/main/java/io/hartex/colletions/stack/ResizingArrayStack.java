@@ -3,29 +3,30 @@ package io.hartex.colletions.stack;
 /**
  * Created by hartex
  */
-public class ResizingArrayStackOfStrings implements NaiveStack<String> {
+@SuppressWarnings("unchecked")
+public class ResizingArrayStack<Item> implements NaiveStack<Item> {
 
-    private String[] items;
+    private Item[] items;
     private int pointerIndex = 0;
 
-    public ResizingArrayStackOfStrings() {
+    public ResizingArrayStack() {
         this(10);
     }
 
-    public ResizingArrayStackOfStrings(int capacity) {
-        items = new String[capacity];
+    public ResizingArrayStack(int capacity) {
+        items = (Item[]) new Object[capacity];
     }
 
     @Override
-    public void push(String item) {
+    public void push(Item item) {
         if (pointerIndex == items.length)
             resize(2 * items.length);
         items[pointerIndex++] = item;
     }
 
     @Override
-    public String pop() {
-        String item = items[--pointerIndex];
+    public Item pop() {
+        Item item = items[--pointerIndex];
         items[pointerIndex] = null;
         if (pointerIndex > 0 && pointerIndex == items.length / 4)
             resize(items.length / 2);
@@ -43,7 +44,7 @@ public class ResizingArrayStackOfStrings implements NaiveStack<String> {
     }
 
     private void resize(int capacity) {
-        String[] copy = new String[capacity];
+        Item[] copy = (Item[]) new Object[capacity];
         System.arraycopy(items, 0, copy, 0, pointerIndex);
         items = copy;
     }
