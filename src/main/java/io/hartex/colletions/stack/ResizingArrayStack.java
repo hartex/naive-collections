@@ -1,18 +1,32 @@
 package io.hartex.colletions.stack;
 
+import java.util.Iterator;
+
 /**
- * Created by hartex
+ * A simple implementation of Stack that is using array and
+ * {@link System#arraycopy(java.lang.Object, int, java.lang.Object, int, int) System.arraycopy}
+ * (for resizing) under the hood
+ *
+ * @author hartex
  */
-@SuppressWarnings("unchecked")
 public class ResizingArrayStack<Item> implements NaiveStack<Item> {
 
     private Item[] items;
     private int pointerIndex = 0;
 
+    /**
+     * Creates an empty stack with default capacity of 15
+     */
     public ResizingArrayStack() {
-        this(10);
+        this(15);
     }
 
+    /**
+     * Creates an empty stack with specified size
+     *
+     * @param capacity initial size of the stack
+     */
+    @SuppressWarnings("unchecked")
     public ResizingArrayStack(int capacity) {
         items = (Item[]) new Object[capacity];
     }
@@ -43,9 +57,32 @@ public class ResizingArrayStack<Item> implements NaiveStack<Item> {
         return pointerIndex == 0;
     }
 
-    private void resize(int capacity) {
-        Item[] copy = (Item[]) new Object[capacity];
+    @SuppressWarnings("unchecked")
+    private void resize(int newCapacity) {
+        Item[] copy = (Item[]) new Object[newCapacity];
         System.arraycopy(items, 0, copy, 0, pointerIndex);
         items = copy;
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return new Iterator<Item>() {
+            private int index = pointerIndex;
+
+            @Override
+            public boolean hasNext() {
+                return index > 0;
+            }
+
+            @Override
+            public Item next() {
+                return items[--index];
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("ResizingArrayStack doesn't support remove operation");
+            }
+        };
     }
 }
