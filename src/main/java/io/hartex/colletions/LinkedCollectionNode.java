@@ -1,13 +1,18 @@
 package io.hartex.colletions;
 
 /**
- * Created by hartex
+ * A common class that represents a single node in linked collection
+ *
+ * I'm not following standard POJO pattern here (with setters and getters) cause
+ * I think it's overkill in that particular case
+ *
+ * @author hartex
  */
 public class LinkedCollectionNode<Item> {
 
-    private Item item;
-    private LinkedCollectionNode<Item> next;
-    private LinkedCollectionNode<Item> previous;
+    public Item item;
+    public LinkedCollectionNode<Item> next;
+    public LinkedCollectionNode<Item> previous;
 
     public LinkedCollectionNode(Item item) {
         this.item = item;
@@ -21,28 +26,5 @@ public class LinkedCollectionNode<Item> {
         this.previous = previous;
     }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public LinkedCollectionNode<Item> getNext() {
-        return next;
-    }
-
-    public void setNext(LinkedCollectionNode<Item> next) {
-        this.next = next;
-    }
-
-    public LinkedCollectionNode<Item> getPrevious() {
-        return previous;
-    }
-
-    public void setPrevious(LinkedCollectionNode<Item> previous) {
-        this.previous = previous;
-    }
 }
 

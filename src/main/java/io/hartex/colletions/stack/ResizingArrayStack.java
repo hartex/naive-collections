@@ -1,6 +1,7 @@
 package io.hartex.colletions.stack;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * A simple implementation of Stack that is using array and
@@ -8,6 +9,8 @@ import java.util.Iterator;
  * (for resizing) under the hood
  *
  * @author hartex
+ * @see io.hartex.colletions.stack.NaiveStack
+ * @see io.hartex.colletions.NaiveCollection
  */
 public class ResizingArrayStack<Item> implements NaiveStack<Item> {
 
@@ -40,6 +43,9 @@ public class ResizingArrayStack<Item> implements NaiveStack<Item> {
 
     @Override
     public Item pop() {
+        if (isEmpty())
+            throw new NoSuchElementException("ResizingArrayStack is empty");
+
         Item item = items[--pointerIndex];
         items[pointerIndex] = null;
         if (pointerIndex > 0 && pointerIndex == items.length / 4)
@@ -76,7 +82,11 @@ public class ResizingArrayStack<Item> implements NaiveStack<Item> {
 
             @Override
             public Item next() {
-                return items[--index];
+                int nextIndex = --index;
+                if (nextIndex < 0)
+                    throw new NoSuchElementException("ResizingArrayStack is empty");
+
+                return items[nextIndex];
             }
 
             @Override
