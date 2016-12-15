@@ -1,4 +1,6 @@
-package io.hartex.colletions.stack;
+package im.hartex.colletions.stack;
+
+import im.hartex.colletions.NaiveCollection;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -9,8 +11,8 @@ import java.util.NoSuchElementException;
  * (for resizing) under the hood
  *
  * @author hartex
- * @see io.hartex.colletions.stack.NaiveStack
- * @see io.hartex.colletions.NaiveCollection
+ * @see NaiveStack
+ * @see NaiveCollection
  */
 public class ResizingArrayStack<Item> implements NaiveStack<Item> {
 
@@ -55,7 +57,7 @@ public class ResizingArrayStack<Item> implements NaiveStack<Item> {
 
     @Override
     public int size() {
-        return items.length;
+        return pointerIndex;
     }
 
     @Override

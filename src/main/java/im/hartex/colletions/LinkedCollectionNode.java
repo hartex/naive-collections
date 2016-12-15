@@ -1,8 +1,8 @@
-package io.hartex.colletions;
+package im.hartex.colletions;
 
 /**
  * A common class that represents a single node in linked collection
- *
+ * <p>
  * I'm not following standard POJO pattern here (with setters and getters) cause
  * I think it's overkill in that particular case
  *

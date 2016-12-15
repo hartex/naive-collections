@@ -1,12 +1,12 @@
-package io.hartex.colletions.stack;
+package im.hartex.colletions.stack;
 
-import io.hartex.colletions.NaiveCollection;
+import im.hartex.colletions.NaiveCollection;
 
 /**
  * A basic interface for Stack collections that are following LIFO principle
  *
  * @author hartex
- * @see io.hartex.colletions.NaiveCollection
+ * @see NaiveCollection
  */
 public interface NaiveStack<Item> extends NaiveCollection<Item>, Iterable<Item> {
 

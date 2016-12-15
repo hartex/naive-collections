@@ -1,6 +1,7 @@
-package io.hartex.colletions.stack;
+package im.hartex.colletions.stack;
 
-import io.hartex.colletions.LinkedCollectionNode;
+import im.hartex.colletions.LinkedCollectionNode;
+import im.hartex.colletions.NaiveCollection;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -9,8 +10,8 @@ import java.util.NoSuchElementException;
  * A simple implementation of Stack based on Linked List data structure
  *
  * @author hartex
- * @see io.hartex.colletions.stack.NaiveStack
- * @see io.hartex.colletions.NaiveCollection
+ * @see NaiveStack
+ * @see NaiveCollection
  */
 public class LinkedListStack<Item> implements NaiveStack<Item> {
 
@@ -19,7 +20,7 @@ public class LinkedListStack<Item> implements NaiveStack<Item> {
 
     @Override
     public void push(Item item) {
-        LinkedCollectionNode<Item> newTop = new LinkedCollectionNode<Item>(item, null, top);
+        LinkedCollectionNode<Item> newTop = new LinkedCollectionNode<>(item, null, top);
         if (top != null)
             top.next = newTop;
         top = newTop;

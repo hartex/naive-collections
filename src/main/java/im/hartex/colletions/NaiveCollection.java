@@ -1,4 +1,4 @@
-package io.hartex.colletions;
+package im.hartex.colletions;
 
 /**
  * A basic interface for all collections implemented in this library
@@ -8,7 +8,7 @@ package io.hartex.colletions;
 public interface NaiveCollection<Item> {
 
     /**
-     * @return a number of elements that collection contains
+     * @return number of elements that collection contains
      */
     int size();
 
