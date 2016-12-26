@@ -34,7 +34,10 @@ public class LinkedListStack<Item> implements NaiveStack<Item> {
 
         LinkedCollectionNode<Item> currentTop = top;
         top = currentTop.previous;
-        top.next = null;
+
+        if (top != null)
+            top.next = null;
+
         size--;
         return currentTop.item;
     }
