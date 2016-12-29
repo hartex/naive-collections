@@ -44,6 +44,15 @@ public class ResizingArrayStack<Item> implements NaiveStack<Item> {
     }
 
     @Override
+    public Item peek() {
+        if (isEmpty())
+            throw new NoSuchElementException("ResizingArrayStack is empty");
+
+        return items[pointerIndex - 1];
+    }
+
+
+    @Override
     public Item pop() {
         if (isEmpty())
             throw new NoSuchElementException("ResizingArrayStack is empty");

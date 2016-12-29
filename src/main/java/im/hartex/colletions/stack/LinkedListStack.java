@@ -28,6 +28,14 @@ public class LinkedListStack<Item> implements NaiveStack<Item> {
     }
 
     @Override
+    public Item peek() {
+        if (isEmpty())
+            throw new NoSuchElementException("LinkedListStack is empty");
+
+        return top.item;
+    }
+
+    @Override
     public Item pop() {
         if (isEmpty())
             throw new NoSuchElementException("LinkedListStack is empty");

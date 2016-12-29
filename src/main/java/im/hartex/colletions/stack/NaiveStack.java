@@ -18,6 +18,11 @@ public interface NaiveStack<Item> extends NaiveCollection<Item>, Iterable<Item> 
     void push(Item item);
 
     /**
+     * @return a single item from the top of the stack (but doesn't remove it)
+     */
+    Item peek();
+
+    /**
      * Removes a single item from the top of the stack
      *
      * @return removed item
