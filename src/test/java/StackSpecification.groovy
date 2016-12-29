@@ -46,6 +46,7 @@ class StackSpecification extends Specification {
         then:
         stack.size() == 2
         !stack.isEmpty()
+        stack.peek() == "item2"
         stack.pop() == "item2"
 
         where:
