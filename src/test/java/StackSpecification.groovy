@@ -9,6 +9,17 @@ import spock.lang.Unroll
 @Unroll
 class StackSpecification extends Specification {
 
+    def "throw NullPointerException when adding null to the #stack.class.getSimpleName()"() {
+        when:
+        stack.push(null)
+
+        then:
+        thrown(NullPointerException)
+
+        where:
+        stack << getImplementations()
+    }
+
     def "throw NoSuchElementException when popping on empty #stack.class.getSimpleName()"() {
         when:
         stack.pop()

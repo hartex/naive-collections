@@ -38,6 +38,7 @@ public class ResizingArrayStack<Item> implements NaiveStack<Item> {
 
     @Override
     public void push(Item item) {
+        NaiveStack.super.push(item);
         if (pointerIndex == items.length)
             resize(2 * items.length);
         items[pointerIndex++] = item;

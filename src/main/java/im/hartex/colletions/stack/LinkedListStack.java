@@ -21,6 +21,7 @@ public class LinkedListStack<Item> implements NaiveStack<Item> {
 
     @Override
     public void push(Item item) {
+        NaiveStack.super.push(item);
         LinkedCollectionNode<Item> newTop = new LinkedCollectionNode<>(item, null, top);
         if (top != null)
             top.next = newTop;
