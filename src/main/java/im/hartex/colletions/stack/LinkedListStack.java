@@ -1,5 +1,6 @@
 package im.hartex.colletions.stack;
 
+import im.hartex.colletions.LinkedCollectionIterator;
 import im.hartex.colletions.LinkedCollectionNode;
 import im.hartex.colletions.NaiveCollection;
 
@@ -62,29 +63,6 @@ public class LinkedListStack<Item> implements NaiveStack<Item> {
 
     @Override
     public Iterator<Item> iterator() {
-        return new Iterator<Item>() {
-
-            private LinkedCollectionNode<Item> current = top;
-
-            @Override
-            public boolean hasNext() {
-                return current != null;
-            }
-
-            @Override
-            public Item next() {
-                if (isEmpty())
-                    throw new NoSuchElementException("LinkedListStack is empty");
-
-                Item item = current.item;
-                current = current.previous;
-                return item;
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException("LinkedListStack doesn't support remove operation");
-            }
-        };
+        return new LinkedCollectionIterator<>(top, this);
     }
 }

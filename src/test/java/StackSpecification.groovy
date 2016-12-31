@@ -20,13 +20,14 @@ class StackSpecification extends Specification {
         stack << getImplementations()
     }
 
-    def "pushing, popping and size checking on #stack.class.getSimpleName() with 1 element"() {
+    def "pushing, peeking, popping and size checking on #stack.class.getSimpleName() with 1 element"() {
         when:
         stack.push("item")
 
         then:
         stack.size() == 1
         !stack.isEmpty()
+        stack.peek() == "item"
         stack.pop() == "item"
 
         where:
@@ -34,7 +35,7 @@ class StackSpecification extends Specification {
 
     }
 
-    def "pushing, popping and size checking in arbitrary order on #stack.class.getSimpleName()"() {
+    def "pushing, peeking, popping and size checking in arbitrary order on #stack.class.getSimpleName()"() {
         when:
         stack.push("item1")
         stack.push("item2")
@@ -58,6 +59,7 @@ class StackSpecification extends Specification {
         stack.push("item1")
         stack.push("item2")
         stack.push("item3")
+        stack.push("item4")
 
         then:
         def iterator = stack.iterator()
