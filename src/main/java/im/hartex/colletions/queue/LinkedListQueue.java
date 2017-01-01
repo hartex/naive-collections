@@ -1,5 +1,6 @@
 package im.hartex.colletions.queue;
 
+import im.hartex.colletions.LinkedCollectionIterator;
 import im.hartex.colletions.LinkedCollectionNode;
 
 import java.util.Iterator;
@@ -9,6 +10,8 @@ import java.util.NoSuchElementException;
  * A simple Queue data structure implementation based on Linked List
  *
  * @author hartex
+ * @see im.hartex.colletions.queue.NaiveQueue
+ * @see im.hartex.colletions.NaiveCollection
  */
 public class LinkedListQueue<Item> implements NaiveQueue<Item> {
 
@@ -18,11 +21,14 @@ public class LinkedListQueue<Item> implements NaiveQueue<Item> {
 
     @Override
     public void enqueue(Item item) {
-        LinkedCollectionNode<Item> newLast = new LinkedCollectionNode<>(item, tail, null);
-        if (tail != null)
-            tail.previous = newLast;
+        if (item == null)
+            throw new NullPointerException("You are trying to enqueue null element");
 
-        tail = newLast;
+        LinkedCollectionNode<Item> newTail = new LinkedCollectionNode<>(item, tail, null);
+        if (tail != null)
+            tail.previous = newTail;
+
+        tail = newTail;
         size++;
         if (isEmpty())
             head = tail;
@@ -33,12 +39,23 @@ public class LinkedListQueue<Item> implements NaiveQueue<Item> {
         if (head == null)
             throw new NoSuchElementException("LinkedListQueue is empty");
 
-        LinkedCollectionNode<Item> firstNode = head;
-        head = firstNode.previous;
-        if (isEmpty()) tail = null;
+        LinkedCollectionNode<Item> currentHead = head;
+        head = currentHead.previous;
+        if (isEmpty()) {
+            tail = null;
+        } else {
+            head.next = null;
+        }
         size--;
-        return firstNode.item;
+        return currentHead.item;
+    }
 
+    @Override
+    public Item peek() {
+        if (head == null)
+            throw new NoSuchElementException("LinkedListQueue is empty");
+
+        return head.item;
     }
 
     @Override
@@ -53,22 +70,6 @@ public class LinkedListQueue<Item> implements NaiveQueue<Item> {
 
     @Override
     public Iterator<Item> iterator() {
-        return new Iterator<Item>() {
-
-            @Override
-            public boolean hasNext() {
-                return false;
-            }
-
-            @Override
-            public Item next() {
-                return null;
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException("LinkedListQueue doesn't support remove operation");
-            }
-        };
+        return new LinkedCollectionIterator<>(head, this);
     }
 }
