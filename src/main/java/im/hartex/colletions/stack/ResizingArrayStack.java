@@ -52,7 +52,6 @@ public class ResizingArrayStack<Item> implements NaiveStack<Item> {
         return items[pointerIndex - 1];
     }
 
-
     @Override
     public Item pop() {
         if (isEmpty())

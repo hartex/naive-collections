@@ -1,3 +1,5 @@
+package im.hartex.collections.specs
+
 import im.hartex.colletions.stack.LinkedListStack
 import im.hartex.colletions.stack.ResizingArrayStack
 import spock.lang.Specification
