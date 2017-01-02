@@ -1,9 +1,9 @@
 package im.hartex.colletions.bag;
 
 import im.hartex.colletions.NaiveCollection;
+import im.hartex.colletions.ResizingCollectionIterator;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
  * A simple implementation of Bag that is using array and
@@ -63,27 +63,6 @@ public class ResizingArrayBag<Item> implements NaiveBag<Item> {
 
     @Override
     public Iterator<Item> iterator() {
-        return new Iterator<Item>() {
-            private int index = pointerIndex;
-
-            @Override
-            public boolean hasNext() {
-                return index > 0;
-            }
-
-            @Override
-            public Item next() {
-                int nextIndex = --index;
-                if (nextIndex < 0)
-                    throw new NoSuchElementException("ResizingArrayBag is empty");
-
-                return items[nextIndex];
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException("ResizingArrayBag doesn't support remove operation");
-            }
-        };
+        return new ResizingCollectionIterator<>(pointerIndex, items, this);
     }
 }

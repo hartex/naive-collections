@@ -4,39 +4,39 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * A common iterator that is used for every Linked List based collections
+ * A common iterator that is used for Array based collections
  *
  * @author hartex
  * @see java.util.Iterator
  */
-public class LinkedCollectionIterator<Item> implements Iterator<Item> {
+public class ResizingCollectionIterator<Item> implements Iterator<Item> {
 
-    private LinkedCollectionNode<Item> current;
+    private int index;
+    private Item[] items;
     private NaiveCollection<Item> collection;
 
-    public LinkedCollectionIterator(LinkedCollectionNode<Item> current, NaiveCollection<Item> collection) {
-        this.current = current;
+    public ResizingCollectionIterator(int index, Item[] items, NaiveCollection<Item> collection) {
+        this.index = index;
+        this.items = items;
         this.collection = collection;
     }
 
     @Override
     public boolean hasNext() {
-        return current != null;
+        return index > 0;
     }
 
     @Override
     public Item next() {
-        if (collection.isEmpty())
+        int nextIndex = --index;
+        if (nextIndex < 0)
             throw new NoSuchElementException(collection.getClass().getSimpleName() + " is empty");
 
-        Item item = current.item;
-        current = current.previous;
-        return item;
+        return items[nextIndex];
     }
 
     @Override
     public void remove() {
         throw new UnsupportedOperationException(collection.getClass().getSimpleName() + " doesn't support remove operation");
     }
-
 }

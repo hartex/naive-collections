@@ -1,6 +1,7 @@
 package im.hartex.colletions.stack;
 
 import im.hartex.colletions.NaiveCollection;
+import im.hartex.colletions.ResizingCollectionIterator;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -83,27 +84,6 @@ public class ResizingArrayStack<Item> implements NaiveStack<Item> {
 
     @Override
     public Iterator<Item> iterator() {
-        return new Iterator<Item>() {
-            private int index = pointerIndex;
-
-            @Override
-            public boolean hasNext() {
-                return index > 0;
-            }
-
-            @Override
-            public Item next() {
-                int nextIndex = --index;
-                if (nextIndex < 0)
-                    throw new NoSuchElementException("ResizingArrayStack is empty");
-
-                return items[nextIndex];
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException("ResizingArrayStack doesn't support remove operation");
-            }
-        };
+        return new ResizingCollectionIterator<>(pointerIndex, items, this);
     }
 }
