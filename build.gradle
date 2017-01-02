@@ -1,14 +1,26 @@
-// Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin: 'groovy'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     jcenter()
 }
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 dependencies {
     // mandatory dependencies for using Spock
-    compile "org.codehaus.groovy:groovy-all:2.4.1"
-    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+    compile "org.codehaus.groovy:groovy-all:2.4.4"
+
+    testCompile 'junit:junit:4.12',
+            'org.spockframework:spock-core:1.0-groovy-2.4'
+
+    testRuntime 'com.athaydes:spock-reports:1.2.7'
+
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
 }
