@@ -21,9 +21,7 @@ public class LinkedListQueue<Item> implements NaiveQueue<Item> {
 
     @Override
     public void enqueue(Item item) {
-        if (item == null)
-            throw new NullPointerException("You are trying to enqueue null element");
-
+        NaiveQueue.super.enqueue(item);
         LinkedCollectionNode<Item> newTail = new LinkedCollectionNode<>(item, tail, null);
         if (tail != null)
             tail.previous = newTail;

@@ -62,6 +62,11 @@ class QueueSpecification extends Specification {
         !queue.isEmpty()
         queue.peek() == "item3"
         queue.dequeue() == "item3"
+        queue.peek() == "item4"
+        queue.dequeue() == "item4"
+        queue.size() == 1
+        queue.dequeue() == "item5"
+        queue.isEmpty()
 
         where:
         queue << getImplementations()
