@@ -3,7 +3,7 @@ package im.hartex.colletions.queue;
 import java.util.Iterator;
 
 /**
- * Created by hartex
+ * @author hartex
  */
 public class PriorityQueue<Item extends Comparable<Item>> implements NaiveQueue<Item> {
 
@@ -24,6 +24,11 @@ public class PriorityQueue<Item extends Comparable<Item>> implements NaiveQueue<
 
     @Override
     public Item dequeue() {
+        return null;
+    }
+
+    @Override
+    public Item peek() {
         return null;
     }
 

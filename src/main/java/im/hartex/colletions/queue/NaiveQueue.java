@@ -2,6 +2,8 @@ package im.hartex.colletions.queue;
 
 import im.hartex.colletions.NaiveCollection;
 
+import java.util.NoSuchElementException;
+
 /**
  * A basic interface for Queue collections that are following FIFO principle
  *
@@ -25,11 +27,18 @@ public interface NaiveQueue<Item> extends NaiveCollection<Item>, Iterable<Item> 
      *
      * @return removed item
      */
-    Item dequeue();
+    default Item dequeue() {
+        if (isEmpty())
+            throw new NoSuchElementException(getClass().getSimpleName() + " collection is empty");
+        return null;
+    }
 
     /**
      * @return an item from the top of the queue (but doesn't remove it)
      */
-    Item peek();
-
+    default Item peek() {
+        if (isEmpty())
+            throw new NoSuchElementException(getClass().getSimpleName() + " collection is empty");
+        return null;
+    }
 }
